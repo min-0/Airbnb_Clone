@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'l8djdftvab-fvg0###c2)!q!x%7h7m&gpx&^k0jfw-_i=txsnr'
+SECRET_KEY = 'g4lu9u))17m8+sqvc=(u6db+mm@%v&7e+nhbx4vs=7f2m)9(5l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-DJANGO_APPS =[
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,19 +39,15 @@ DJANGO_APPS =[
     'django.contrib.staticfiles',
 ]
 
-THIRD_PARTY_APPS = ["django_countries", "django_seed", "storages"]
+THIRD_PARTY_APPS = ["django_countries"]
 
 PROJECT_APPS = [
     "core.apps.CoreConfig",
     "users.apps.UsersConfig",
     "rooms.apps.RoomsConfig",
-    "reviews.apps.ReviewsConfig",
-    "reservations.apps.ReservationsConfig",
-    "lists.apps.ListsConfig",
-    "conversations.apps.ConversationsConfig",
 ]
 
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
+INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -119,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
@@ -133,10 +129,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-
 AUTH_USER_MODEL = "users.User"
-
-MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
-
-MEDIA_URL = "/media/"
