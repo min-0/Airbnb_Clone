@@ -48,3 +48,7 @@ class HomeView(ListView):
         now = datetime.now()
         context["now"] = now
         return context"""
+    
+    def room_detail(request, pk):
+        print(pk)
+        return render(request, "rooms/detail.html")
