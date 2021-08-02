@@ -1,10 +1,12 @@
-#from django.http import HttpResponse
-#from datetime import datetime, timezone
-from django.core import exceptions, paginator
+# from django.http import HttpResponse
+# from datetime import datetime, timezone
+# from django.core.paginator import EmptyPage, Paginator
+# from django.core import exceptions, paginator
+# from django.http import Http404
+# from django.urls import 
 from django.shortcuts import redirect, render
-from django.core.paginator import EmptyPage, Paginator
-from django.views.generic import ListView
-from django.urls import reverse
+from django.views.generic import ListView, DetailView
+from django_countries import countries
 from . import models
 
 """
@@ -51,11 +53,32 @@ class HomeView(ListView):
         return context"""
     
     
-def room_detail(request, pk):
+#FBV 방식
+""" def room_detail(request, pk):
     try:
         room = models.Room.objects.get(pk=pk)
         return render(request, "rooms/detail.html", {"room":room})
     except models.Room.DoesNotExist:
-        return redirect(reverse("core:home"))
+        raise Http404()
+        #return redirect(reverse("core:home"))
+"""
+
+#CBV 방식
+class RoomDetail(DetailView):
+
+    """ RoomDetail Definition """
+    
+    model = models.Room
+    #pk_url_kwarg = "pk"
+
+def search(request):
+    city = request.GET.get("city", "Anywhere")
+    city = str.capitalize(city)
+    room_types = models.RoomType.objects.all()
+    return render(
+        request,
+        "rooms/search.html",
+        {"city": city, "countries": countries, "room_types": room_types},
+    )
 
 
